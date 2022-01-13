@@ -11,6 +11,10 @@
 
 //HINT: You will need to study the classes in teh styles.css file to appy styling.
 
+//Challenge
+//1. Implement the add note functionality.
+//2. Implement the delete note functionality.
+
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
