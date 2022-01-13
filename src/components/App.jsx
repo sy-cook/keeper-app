@@ -4,24 +4,24 @@ import Note from "./Note";
 import Footer from "./Footer";
 // import notes from "../notes";
 import CreateArea from "./CreateArea";
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [notes, setNotes] = useState([]);
   
-  function addItem(note) {
-    const uniqueID = uuidv4();
-    const noteWithID = {id: uniqueID, ...note};
+  function addNote(note) {
+    // const uniqueID = uuidv4();
+    // const noteWithID = {id: uniqueID, ...note};
 
-    setItems((prevItems) => {
-      return [...prevItems, noteWithID]
+    setNotes((prevNotes) => {
+      return [...prevNotes, note]
     });
   }
 
-  function deleteItem(id) {
-    setItems((prevItems) => {
-      return prevItems.filter((noteItem) => {
-        return noteItem.id !== id;
+  function deleteNote(id) {
+    setNotes((prevNotes) => {
+      return prevNotes.filter((noteItem, index) => {
+        return index !== id;
       });
     });
   }
@@ -29,14 +29,14 @@ function App() {
   return (
     <div>
       <Header />
-      <CreateArea onAdd={addItem} />
-      {items.map((noteItem) => (
+      <CreateArea onAdd={addNote} />
+      {notes.map((noteItem, index) => (
         <Note 
-					key={noteItem.id} 
-          id={noteItem.id} 
+					key={index} 
+          id={index} 
 					title={noteItem.title} 
 					content={noteItem.content} 
-          onChecked={deleteItem}
+          onDelete={deleteNote}
 				/>
       ))}
       <Footer />
